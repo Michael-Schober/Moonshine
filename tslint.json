@@ -15,6 +15,7 @@
       "app",
       "camelCase"
     ],
+    "one-line" : false,
     "component-selector": [
       true,
       "element",

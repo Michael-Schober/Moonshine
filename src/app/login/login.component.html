@@ -1,0 +1,15 @@
+<app-layout>
+    <div class="jumbotron">
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label>Username</label>
+                    <input class="form-control" formControlName="username">
+                <label>Password</label>
+                    <input class="form-control" formControlName="password">
+            </div>
+        </form>
+        <h5>{{ name }}</h5>
+        <button type="button" class="btn btn-dark" (click)="Login()">Login </button>
+        <button type="button" class="btn btn-dark" (click)="DisplayData()">Data </button>
+    </div>
+</app-layout>
