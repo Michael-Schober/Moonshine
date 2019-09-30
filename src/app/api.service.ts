@@ -20,17 +20,7 @@ export class ApiService {
     this.oauthService.setStorage(sessionStorage);
     this.oauthService.tryLogin({});
   }
-
-  private setStuff()
-  {
-    this.oauthService.loginUrl = 'http://localhost:8081/spring-security-oauth-server/oauth/authorize/login';
-    this.oauthService.redirectUri = window.location.origin + '/home';
-    this.oauthService.clientId = 'sampleClientId';
-    this.oauthService.scope = 'read';
-    this.oauthService.setStorage(sessionStorage);
-    this.oauthService.tryLogin({});
-  }
-
+  
 
   obtainAccessToken()
   {
