@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from '../api.service';
+import { ApiService } from '../Services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -20,14 +20,6 @@ export class LoginComponent {
 
   Login()
   {
-    this.serv.obtainAccessToken();
-  }
-
-  DisplayData()
-  {
-    this.serv.getResource('localhost:8082/spring-security-oauth-resource/tet').subscribe(data =>
-      {
-        this.name = data.name;
-      });
+    this.serv.obtainAccessToken()
   }
 }

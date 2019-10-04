@@ -7,8 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { UiModule } from './ui/ui.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,8 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    OAuthModule.forRoot()
   ],
-  providers: [OAuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
