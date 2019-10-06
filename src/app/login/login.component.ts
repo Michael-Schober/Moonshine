@@ -20,6 +20,13 @@ export class LoginComponent {
 
   Login()
   {
-    this.serv.obtainAccessToken()
+    this.serv.obtainAccessCode();
   }
+
+  GetData()
+  {
+    this.serv.read().subscribe(A => console.log(A.name));
+  }
+
+
 }
