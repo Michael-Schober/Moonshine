@@ -12,3 +12,14 @@ export class Hi
     public name: string;
     public serNr: number;
 }
+
+export class TokenCheck
+{
+    public exp: Number;
+    public user_name: string;
+    public authorities: Array<string>;
+    public jti: string;
+    public client_id: string;
+    public scope: Array<string>;
+    
+}
