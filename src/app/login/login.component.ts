@@ -26,7 +26,6 @@ export class LoginComponent {
   GetData()
   {
     this.serv.read().subscribe(A => console.log(A.name));
-    this.serv.getName().subscribe(A => console.log(A.user_name));
   }
 
 
