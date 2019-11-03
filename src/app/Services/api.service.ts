@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Token, Hi } from './responeTypes';
+import { Token, User } from './responeTypes';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
@@ -11,6 +11,7 @@ const params = new HttpParams()
   .set("response_type", "code");
 const url = "http://localhost:9100/";
 const resUrl = 'http://localhost:9200/';
+const regUrl = 'http://localhost:9150/';
 
 
 @Injectable({
@@ -28,6 +29,8 @@ export class ApiService {
   public logedIn = false;
   private token;
 
+
+  // authentication
   obtainAccessCode()
   {
     window.location.href = encodeURI(url + 'oauth/authorize?' + params.toString());
@@ -57,14 +60,10 @@ export class ApiService {
     this.kek.set('jti', t.jti);
   }
 
-  public read(): Observable<Hi>
-  {
-    const httpOptions =
-    {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Bearer ' + this.token)
-    };
 
-    return this.client.get<Hi>(resUrl + 'api/code/', httpOptions);
+  // Registration
+  register(u: User)
+  {
+    this.client.post(regUrl + "register", u).subscribe();
   }
 }

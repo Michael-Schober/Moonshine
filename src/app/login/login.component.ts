@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../Services/api.service';
+import { User } from '../Services/responeTypes';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,8 @@ export class LoginComponent {
 
   loginForm = new FormGroup
     ({
-      username: new FormControl(),
-      password: new FormControl(),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
 
   Login()
@@ -23,9 +24,12 @@ export class LoginComponent {
     this.serv.obtainAccessCode();
   }
 
-  GetData()
+  Register()
   {
-    this.serv.read().subscribe(A => console.log(A.name));
+    const x = new User();
+    x.username = this.loginForm.get("username").value;
+    x.password = this.loginForm.get("password").value;
+    this.serv.register(x);
   }
 
 

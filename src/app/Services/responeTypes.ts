@@ -7,8 +7,9 @@ export class Token
     public scope: string;
 }
 
-export class Hi
+export class User
 {
-    public name: string;
-    public serNr: number;
+    public username: string;
+    public password: string;
 }
+
