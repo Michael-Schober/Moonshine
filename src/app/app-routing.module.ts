@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { OauthComponent } from './oauth/oauth.component';
+import { CpanelComponent } from './cpanel/cpanel.component';
+import { RouteGuardService } from './Services/route-guard.service'
 
 
 const routes: Routes = [
@@ -21,6 +23,11 @@ const routes: Routes = [
   {
     path: 'auth',
     component: OauthComponent
+  },
+  {
+    path: 'me',
+    component: CpanelComponent,
+    canActivate: [RouteGuardService]
   }
 ];
 

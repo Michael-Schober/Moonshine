@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
+import { ApiService } from '../Services/api.service';
 
 
 
@@ -13,6 +14,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
+  providers: [ApiService],
   exports: [ LayoutComponent ]
+
 })
 export class UiModule { }

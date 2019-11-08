@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Token, User } from './responeTypes';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,7 +9,7 @@ const params = new HttpParams()
   .set("redirect_uri", "http://localhost:4200/auth")
   .set("client_id", "CodeID")
   .set("response_type", "code");
-const url = "http://localhost:9100/";
+const url = "http://localhost:9000/auth/";
 const resUrl = 'http://localhost:9200/';
 const regUrl = 'http://localhost:9150/';
 
@@ -17,18 +17,21 @@ const regUrl = 'http://localhost:9150/';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService
+{
+
+  public logedIn = false;
+  private token;
+
   constructor(private client: HttpClient, private kek: CookieService)
   {
     if (this.kek.check("Token"))
     {
       this.token = this.kek.get("Token");
+      this.logedIn = true;
     }
+
   }
-
-  public logedIn = false;
-  private token;
-
 
   // authentication
   obtainAccessCode()

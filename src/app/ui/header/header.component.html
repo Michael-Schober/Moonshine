@@ -3,6 +3,7 @@
         <div class="navbar-expand mr-auto">
           <div class="navbar-nav">
                 <a class="nav-link nav-item active" [routerLink]="['/login']" >Login</a>
+                <a *ngIf="serv.logedIn" class="nav-link nav-item active" [routerLink]="['/me']" >Test</a>
           </div>
         </div>
       </nav>
