@@ -60,7 +60,6 @@ export class ApiService
     this.token = t.access_token;
     this.logedIn = true;
     this.kek.set('Token', t.access_token);
-    this.kek.set('jti', t.jti);
   }
 
 

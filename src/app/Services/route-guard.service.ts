@@ -1,29 +1,22 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import decode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteGuardService implements CanActivate {
 
+  helper = new JwtHelperService();
 
-  constructor(private keks: CookieService) 
+  constructor(private keks: CookieService)
   {
-    const tok = keks.get("Token")
-    const payload = decode(tok);
-
-    console.log(payload);
   }
 
   canActivate(): boolean
   {
-    return false;
+    return !this.helper.isTokenExpired(this.keks.get("Token"));
   }
 
-
-  
-
-  
 }
