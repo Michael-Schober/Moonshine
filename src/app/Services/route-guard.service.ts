@@ -12,6 +12,7 @@ export class RouteGuardService implements CanActivate {
 
   constructor(private keks: CookieService)
   {
+    
   }
 
   canActivate(): boolean
