@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../Services/api.service';
 
 
 
@@ -12,7 +14,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class LoginComponent
 {
 
-  constructor(private oauthService: OAuthService) 
+  constructor(private oauthService: OAuthService, private serv: ApiService) 
   {
     
   }
@@ -25,6 +27,11 @@ export class LoginComponent
   logoff()
   {
     this.oauthService.logOut();
+  }
+
+  mk()
+  {
+    this.serv.getAppointments().subscribe(data => console.log(data));
   }
 
   
