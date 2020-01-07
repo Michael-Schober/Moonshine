@@ -48,7 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:9150/'],
+        allowedUrls: ['http://localhost:9150/', 'http://localhost:4200/'],
         sendAccessToken: true
       }
     }),

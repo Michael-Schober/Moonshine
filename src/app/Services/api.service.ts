@@ -15,9 +15,9 @@ export class ApiService
     
   }
 
-  getAppointments(): Observable<Array<Appointment>>
+  getAppointments(): Observable<Appointment>
   {
-    return this.http.get<Array<Appointment>>("localhost:9150/app");
+    return this.http.get<Appointment>("http://localhost:9150/app/1");
   }
 
 }
