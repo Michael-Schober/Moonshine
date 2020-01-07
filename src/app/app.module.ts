@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { CookieService } from 'ngx-cookie-service';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 // Custom Modules
 import { UiModule } from './ui/ui.module';
@@ -13,7 +13,6 @@ import { UiModule } from './ui/ui.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { OauthComponent } from './oauth/oauth.component';
 
 
 // Material
@@ -32,16 +31,13 @@ import {
   MatCardModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CpanelComponent } from './cpanel/cpanel.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    OauthComponent,
-    CpanelComponent,
+    LoginComponent
   ],
   imports: [
     UiModule,
@@ -49,6 +45,13 @@ import { CpanelComponent } from './cpanel/cpanel.component'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:9150/'],
+        sendAccessToken: true
+      }
+    }),
 
 
     BrowserAnimationsModule,
@@ -64,7 +67,7 @@ import { CpanelComponent } from './cpanel/cpanel.component'
     MatSelectModule,
     MatCardModule
   ],
-  providers: [CookieService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,27 +1,11 @@
 <app-layout>
-    <div class="row">
-            <div class="jumbotron col-md-5">
-                <h3>Login with existing account</h3>
-                <button mat-raised-button type="button" class="btn btn-dark" (click)="Login()">Login </button>
-            </div>
-            <div class="col-md-1"> </div>
-            <div class="jumbotron col-md-5">
-                <h3>Create new Account</h3>
-                <form [formGroup]="loginForm" (ngSubmit)="Register()">
-                        <div class='form-group'>
-                        <mat-form-field>
-                            <label> UserName: </label>
-                            <input matInput type="text" formControlName="username">
-                        </mat-form-field>
-                    </div>
-                        <mat-form-field>
-                            <label> Password:  </label>    
-                            <input matInput type="password" formControlName="password">
-                        </mat-form-field>
-                        <br/>
-                        <button mat-raised-button  type="submit" [disabled]="!loginForm.valid">Register</button>
-                </form>
-                
-            </div>
+    <div class="jumbotron">
+        <button class="btn btn-primary" (click)="login()">
+            Login
+          </button>
+          <br><br>
+          <button class="btn btn-primary" (click)="logoff()">
+            Logout
+          </button>
     </div>
 </app-layout>

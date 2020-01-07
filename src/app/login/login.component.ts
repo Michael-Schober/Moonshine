@@ -1,36 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ApiService } from '../Services/api.service';
-import { User } from '../Services/responeTypes';
+import { OAuthService } from 'angular-oauth2-oidc';
+
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  constructor(private serv: ApiService) { }
+export class LoginComponent
+{
 
-  public name: string;
-
-  loginForm = new FormGroup
-    ({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
-
-  Login()
+  constructor(private oauthService: OAuthService) 
   {
-    this.serv.obtainAccessCode();
+    
   }
 
-  Register()
+  login()
   {
-    const x = new User();
-    x.username = this.loginForm.get("username").value;
-    x.password = this.loginForm.get("password").value;
-    this.serv.register(x);
+    this.oauthService.initLoginFlow();
   }
 
+  logoff()
+  {
+    this.oauthService.logOut();
+  }
+
+  
 
 }
