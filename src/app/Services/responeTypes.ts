@@ -6,3 +6,8 @@ export class Appointment
     public details: string;
 }
 
+export class User
+{
+    public preferred_username: string;
+}
+

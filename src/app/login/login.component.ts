@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../Services/api.service';
+import { User } from '../Services/responeTypes';
 
 
 
@@ -14,9 +15,12 @@ import { ApiService } from '../Services/api.service';
 export class LoginComponent
 {
 
-  constructor(private oauthService: OAuthService, private serv: ApiService) 
+  constructor(private oauthService: OAuthService, private serv: ApiService)
   {
-    
+    if(this.serv.logged)
+    {
+      console.log(oauthService.getGrantedScopes());
+    }
   }
 
   login()
@@ -33,7 +37,4 @@ export class LoginComponent
   {
     this.serv.getAppointments().subscribe(data => console.log(data));
   }
-
-  
-
 }

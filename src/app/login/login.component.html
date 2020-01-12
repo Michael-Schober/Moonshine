@@ -1,15 +1,23 @@
 <app-layout>
-    <div class="jumbotron">
-        <button class="btn btn-primary" (click)="login()">
-            Login
-          </button>
-          <br><br>
-          <button class="btn btn-primary" (click)="logoff()">
-            Logout
-          </button>
-          <br><br>
-          <button class="btn btn-primary" (click)="mk()">
-            Request
-          </button>
+    <div class="jumbotron col-md-12">
+        <div class= "row">
+          <div class="col-md-4"><button class="btn btn-primary" (click)="login()">
+              Login
+            </button></div>
+          <div class="col-md-4"><button class="btn btn-primary" (click)="logoff()">
+              Logout
+            </button></div>
+          <div class="col-md-4"><button class="btn btn-primary" (click)="mk()">
+              Request
+            </button></div>
+        </div>
     </div>
+
+    <div *ngIf="this.serv.logged" class="jumbotron col-md-12">
+        <div class="row">
+          <h2>Appointments</h2>
+          
+        </div>
+        <div class="col-md-9"><app-appointment ></app-appointment></div>
+  </div>
 </app-layout>

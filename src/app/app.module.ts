@@ -31,13 +31,15 @@ import {
   MatCardModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AppointmentComponent
   ],
   imports: [
     UiModule,
@@ -48,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:9150/', 'http://localhost:4200/'],
+        allowedUrls: ['http://localhost:9150/', 'http://localhost:9155/'],
         sendAccessToken: true
       }
     }),
