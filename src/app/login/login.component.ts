@@ -19,7 +19,7 @@ export class LoginComponent
   {
     if(this.serv.logged)
     {
-      console.log(oauthService.getGrantedScopes());
+      
     }
   }
 

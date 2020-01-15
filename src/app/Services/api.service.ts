@@ -17,14 +17,14 @@ export class ApiService
     if (this.oauthService.getIdToken()) { this.logged = true; }
   }
 
-  getAppointments(): Observable<Appointment>
+  getAppointments(): Observable<any>
   {
-    return this.http.get<Appointment>("http://localhost:9150/user");
+    return this.http.get<any>("http://localhost:9155/appointment");
   }
 
-  createAppointment(a: Appointment): Observable<Appointment>
+  createAppointment(a: Appointment): Observable<any>
   {
-    return this.http.post<Appointment>("http://localhost:9155/appointment", a);
+    return this.http.post<any>("http://localhost:9155/appointment", a);
   }
 
 }

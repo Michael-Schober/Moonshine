@@ -3,7 +3,7 @@
     <button *ngIf="!btn" class=" btn btn-primary col-md-3" (click)="createNew()"> create new</button>
 </div>
 
-<div class="row">
+<div *ngIf="btn" class="row">
     <form [formGroup]="appointmentForm"  (ngSubmit)="createNewApp()">
         <div class="row">
             <div class="col">
@@ -31,9 +31,8 @@
             </div>
         </div>
         <button mat-raised-button type="submit">Submit</button>
-
     </form>
+</div>
+<div>
     
-
-
 </div>
