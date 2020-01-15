@@ -1,1 +1,1 @@
-Front End, for EvE API Data project
+Front End For Blackout
