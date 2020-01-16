@@ -17,9 +17,9 @@ export class ApiService
     if (this.oauthService.getIdToken()) { this.logged = true; }
   }
 
-  getAppointments(): Observable<any>
+  getAppointments(): Observable<Array<Appointment>>
   {
-    return this.http.get<any>("http://localhost:9155/appointment");
+    return this.http.get<Array<Appointment>>("http://localhost:9155/appointment");
   }
 
   createAppointment(a: Appointment): Observable<any>

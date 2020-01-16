@@ -28,10 +28,13 @@ import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatDatepickerModule,
   MatSelectModule,
-  MatCardModule
+  MatCardModule,
+  MatIconModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    AppointmentViewComponent
   ],
   imports: [
     UiModule,
@@ -60,6 +64,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatIconModule,
+    MatNativeDateModule,
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,

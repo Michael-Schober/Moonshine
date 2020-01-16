@@ -4,6 +4,7 @@ export class Appointment
     public date: string;
     public title: string;
     public details: string;
+    public List: Array<string>;
 }
 
 export class User
