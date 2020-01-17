@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { ApiService } from '../Services/api.service';
 import { Appointment } from '../Services/responeTypes';
+import { AppPage } from 'e2e/src/app.po';
 
 @Component({
   selector: 'app-appointment-view',
   templateUrl: './appointment-view.component.html',
   styleUrls: ['./appointment-view.component.css']
 })
-export class AppointmentViewComponent implements OnInit {
+export class AppointmentViewComponent implements OnInit, OnChanges {
 
+  @Output() appSelect = new EventEmitter();
+  @Input() createdApp: Appointment
 
   public appointments: Array<Appointment>;
 
@@ -17,9 +20,9 @@ export class AppointmentViewComponent implements OnInit {
     
   }
 
-  ngOnInit()
-  {
-    this.serv.getAppointments().subscribe(Data => this.appointments = Data);
-  }
+  ngOnInit() { this.serv.getAppointments().subscribe(Data => this.appointments = Data); }
+  ngOnChanges() { this.appointments.push(this.createdApp) }
+
+  appointmentSelected(data: Appointment) { this.appSelect.emit(data); }
 
 }

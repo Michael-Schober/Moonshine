@@ -17,10 +17,6 @@ export class LoginComponent
 
   constructor(private oauthService: OAuthService, private serv: ApiService)
   {
-    if(this.serv.logged)
-    {
-      
-    }
   }
 
   login()
