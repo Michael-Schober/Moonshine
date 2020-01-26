@@ -31,6 +31,6 @@ export class LoginComponent
 
   mk()
   {
-    this.serv.getAppointments().subscribe(data => console.log(data));
+    this.serv.test().subscribe(data => console.log(data));
   }
 }

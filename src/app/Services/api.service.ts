@@ -19,12 +19,17 @@ export class ApiService
 
   getAppointments(): Observable<Array<Appointment>>
   {
-    return this.http.get<Array<Appointment>>("http://localhost:9155/appointment");
+    return this.http.get<Array<Appointment>>("http://localhost:9150/user");
   }
 
   createAppointment(a: Appointment): Observable<any>
   {
     return this.http.post<any>("http://localhost:9155/appointment", a);
+  }
+
+  test(): Observable<any>
+  {
+    return this.http.get<any>("http://192.168.0.36:9000/user");
   }
 
 }

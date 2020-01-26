@@ -13,15 +13,15 @@ export class AppointmentViewComponent implements OnInit, OnChanges {
   @Output() appSelect = new EventEmitter();
   @Input() createdApp: Appointment
 
-  public appointments: Array<Appointment>;
+  public appointments: Array<Appointment> = new Array<Appointment>();
 
   constructor(private serv: ApiService)
   {
     
   }
 
-  ngOnInit() { this.serv.getAppointments().subscribe(Data => this.appointments = Data); }
-  ngOnChanges() { this.appointments.push(this.createdApp) }
+  ngOnInit() {  }
+  ngOnChanges() { if(this.createdApp != null) {this.appointments.push(this.createdApp) } }
 
   appointmentSelected(data: Appointment) { this.appSelect.emit(data); }
 

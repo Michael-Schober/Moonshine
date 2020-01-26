@@ -54,7 +54,7 @@ import { AppointmentViewComponent } from './appointment-view/appointment-view.co
 
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:9150/', 'http://localhost:9155/'],
+        allowedUrls: ['http://localhost:9000/', 'http://192.168.0.36:9000/'],
         sendAccessToken: true
       }
     }),
