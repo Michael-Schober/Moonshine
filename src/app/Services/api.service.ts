@@ -1,17 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Token, User, Game, jwtDecoded } from './responeTypes';
-import { CookieService } from 'ngx-cookie-service';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
-
-
-const params = new HttpParams()
-  .set("redirect_uri", "http://localhost:4200/auth")
-  .set("client_id", "CodeID")
-  .set("response_type", "code");
-const url = "http://localhost:9000/";
-const regUrl = 'http://localhost:9150/';
+import { Appointment } from './responeTypes';
 
 
 @Injectable({
@@ -19,65 +10,26 @@ const regUrl = 'http://localhost:9150/';
 })
 export class ApiService
 {
-  public logedIn: boolean;
+  public logged = false;
 
-  private token: string;
-  private decodeToken: jwtDecoded;
-
-  constructor(private client: HttpClient, private kek: CookieService)
+  constructor(private oauthService: OAuthService, private http: HttpClient)
   {
-    if (this.kek.check("Token"))
-    {
-      this.token = this.kek.get("Token");
-      this.decodeToken = new JwtHelperService().decodeToken(this.token);
-      this.logedIn = true;
-    }
-
+    if (this.oauthService.getIdToken()) { this.logged = true; }
   }
 
-  // authentication & Registration
-  obtainAccessCode()
+  getAppointments(): Observable<Array<Appointment>>
   {
-    window.location.href = encodeURI(url + 'auth/oauth/authorize?' + params.toString());
+    return this.http.get<Array<Appointment>>("http://localhost:9150/user");
   }
 
-  obtainToken(code: string)
+  createAppointment(a: Appointment): Observable<any>
   {
-    const paramater = new HttpParams()
-      .set('grant_type', 'authorization_code')
-      .set('code', code)
-      .set("redirect_uri", "http://localhost:4200/auth");
-    const httpOptions =
-    {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Basic Q29kZUlEOnNlY3JldA==')
-    };
-
-    this.client.post<Token>(url + 'auth/oauth/token' + '?' + paramater.toString() , '' , httpOptions)
-    .subscribe(A => this.saveToken(A));
+    return this.http.post<any>("http://localhost:9155/appointment", a);
   }
 
-  private saveToken(t: Token)
+  test(): Observable<any>
   {
-    this.token = t.access_token;
-    this.decodeToken = new JwtHelperService().decodeToken(this.token);
-    this.logedIn = true;
-    this.kek.set('Token', t.access_token);
+    return this.http.get<any>("http://192.168.0.36:9000/user");
   }
 
-  register(u: User)
-  {
-    this.client.post(url + "reg/register", u).subscribe();
-  }
-
-  hasScope(scope: string): boolean
-  {
-    return this.decodeToken.scope.includes(scope);
-  }
-
-  //API calls
-  getGame(id: number): Observable<Game>
-  {
-    return this.client.get<Game>(url + '/api/game/' + id);
-  }
 }

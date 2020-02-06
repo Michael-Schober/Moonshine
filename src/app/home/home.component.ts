@@ -9,5 +9,5 @@ import { ApiService } from '../Services/api.service';
 
 export class HomeComponent {
 
-  constructor(private serv: ApiService) { }
+  constructor( ) { }
 }

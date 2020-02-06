@@ -1,0 +1,43 @@
+<div class="row">
+    <button *ngIf="btn" class=" btn btn-primary col-md-3" (click)="showElements()"> show </button>
+    <button *ngIf="!btn" class=" btn btn-primary col-md-3" (click)="showElements()"> create new</button>
+</div>
+
+<div *ngIf="btn" class="col-md-12">
+    <form [formGroup]="appointmentForm"  (ngSubmit)="createNewApp()">
+        <div class="row">
+            <div class="col">
+                <mat-label>ID: </mat-label> <br>
+                <mat-form-field>
+                    <input matInput readonly placeholder="id" formControlName="id">
+                </mat-form-field>
+            </div> <div class="col">
+                <mat-label>Date: </mat-label> <br>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div> <div class="row">
+            <div class="col">
+                <mat-label>Title: </mat-label> <br>
+                    <mat-form-field>
+                        <input matInput placeholder="Title" formControlName="title">
+                    </mat-form-field>
+            </div> <div class="col">
+            <mat-label>Details: </mat-label> <br>
+                <mat-form-field>
+                    <textarea  matInput placeholder="Details" formControlName="details"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button type="submit">Submit</button>
+        <button mat-raised-button (click)="flush()">FLush</button>
+    </form>
+</div>
+<div>
+    <app-appointment-view (appSelect)=appSelected($event) [createdApp]="createdApp" ></app-appointment-view>
+</div>
