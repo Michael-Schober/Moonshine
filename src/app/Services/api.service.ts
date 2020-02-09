@@ -29,7 +29,7 @@ export class ApiService
 
   test(): Observable<any>
   {
-    return this.http.get<any>("http://192.168.0.36:9000/user");
+    return this.http.get<any>("http://192.168.56.12:9000/user");
   }
 
 }
