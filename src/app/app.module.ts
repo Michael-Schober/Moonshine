@@ -33,17 +33,13 @@ import {
   MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppointmentComponent } from './appointment/appointment.component';
-import { AppointmentViewComponent } from './appointment-view/appointment-view.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    AppointmentComponent,
-    AppointmentViewComponent
+    LoginComponent
   ],
   imports: [
     UiModule,
