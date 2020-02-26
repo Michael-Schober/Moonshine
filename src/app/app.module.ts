@@ -33,6 +33,7 @@ import {
   MatNativeDateModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     UiModule,
+    AdminModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
