@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { HttpClient } from '@angular/common/http';
+import { OAuthService } from 'angular-oauth2-oidc';;
 import { ApiService } from '../Services/api.service';
-import { User } from '../Services/responeTypes';
+
+
 
 
 
@@ -17,6 +16,7 @@ export class LoginComponent
 
   constructor(private oauthService: OAuthService, private serv: ApiService)
   {
+
   }
 
   login()
@@ -31,6 +31,7 @@ export class LoginComponent
 
   mk()
   {
-    this.serv.test().subscribe(data => console.log(data));
+    this.serv.test().subscribe(A => console.log(A));
+    this.serv.test2().subscribe(A => console.log(A));
   }
 }

@@ -1,8 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Observable } from 'rxjs';
-import { Shop } from './responeTypes';
+import { Shop, User } from './responeTypes';
+import { Observable, Observer } from 'rxjs';
+import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 
 
 @Injectable({
@@ -10,16 +11,17 @@ import { Shop } from './responeTypes';
 })
 export class ApiService
 {
-  public logged = false;
 
-  constructor(private oauthService: OAuthService, private http: HttpClient)
-  {
-    if (this.oauthService.getIdToken()) { this.logged = true; }
-  }
+  constructor(private oauthService: OAuthService, private http: HttpClient) { }
 
   test(): Observable<any>
   {
-    return this.http.get<any>("http://37.252.191.48:9000/shop");
+    return this.http.get("http://37.252.191.48:9000/user?page=4&size=46");
+  }
+
+  test2(): Observable<any>
+  {
+    return this.http.get("http://37.252.191.48:9000/shop");
   }
 
   createNewShop(shop: Shop): Observable<Shop>

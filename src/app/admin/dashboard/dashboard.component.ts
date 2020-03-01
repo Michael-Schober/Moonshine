@@ -34,10 +34,10 @@ export class DashboardComponent{
     let openTime: Time; openTime = this.NewShopForm.get("opening").value;
     let closeTime: Time; closeTime = this.NewShopForm.get("closing").value;
     let newShop: Shop = new Shop;
-    
+
     close.setHours(closeTime.hours); close.setMinutes(closeTime.minutes);
     open.setHours(openTime.hours); open.setMinutes(openTime.minutes);
-    
+
     newShop.opening = open;
     newShop.closing = close;
     newShop.city = this.NewShopForm.get("city").value;

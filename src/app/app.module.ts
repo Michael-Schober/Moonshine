@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
@@ -52,7 +52,7 @@ import { AdminModule } from './admin/admin.module';
 
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://37.252.191.48:9000/'],
+        allowedUrls: ['http://37.252.191.48:9000/', '37.252.191.48:9000'],
         sendAccessToken: true
       }
     }),

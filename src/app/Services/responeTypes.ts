@@ -1,6 +1,11 @@
 export class User
 {
-    public preferred_username: string;
+    u_id: string;
+
+    constructor(u_id: string)
+    {
+        this.u_id = u_id;
+    }
 }
 
 export class Shop
