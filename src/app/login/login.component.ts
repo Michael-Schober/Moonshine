@@ -31,7 +31,10 @@ export class LoginComponent
 
   mk()
   {
-    this.serv.test().subscribe(A => console.log(A));
-    this.serv.test2().subscribe(A => console.log(A));
+   // this.serv.test().subscribe(A => console.log(A));
+   // this.serv.test2().subscribe(A => console.log(A));
+
+   this.serv.startUserStream().subscribe(A => console.log(A));
+   this.serv.startShopStream().subscribe(A => console.log(A));
   }
 }
