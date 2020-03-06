@@ -10,6 +10,7 @@ export class User
 
 export class Shop
 {
+    s_id: number;
     opening: Date;
     closing: Date;
     name: string;

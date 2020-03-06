@@ -52,7 +52,7 @@ import { AdminModule } from './admin/admin.module';
 
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://37.252.191.48:9000/', '37.252.191.48:9000'],
+        allowedUrls: ['http://37.252.191.48:9000/'],
         sendAccessToken: true
       }
     }),

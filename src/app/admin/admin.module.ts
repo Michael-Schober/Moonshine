@@ -22,6 +22,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BottleService } from './bottle.service';
+import { UiModule } from '../ui/ui.module';
 
 
 
@@ -30,6 +31,7 @@ import { BottleService } from './bottle.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    UiModule,
 
     BrowserAnimationsModule,
     MatButtonModule,

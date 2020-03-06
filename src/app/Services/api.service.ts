@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Shop, User } from './responeTypes';
 import { Observable, Observer } from 'rxjs';
-import {EventSourcePolyfill} from 'ng-event-source';
+import {EventSourcePolyfill, OnMessageEvent} from 'ng-event-source';
 
 
 @Injectable({
@@ -11,6 +11,9 @@ import {EventSourcePolyfill} from 'ng-event-source';
 })
 export class ApiService
 {
+
+  public shops: Array<Shop> = new Array<Shop>();
+
 
   constructor(private oauthService: OAuthService, private http: HttpClient, private zone: NgZone) { }
 
@@ -48,10 +51,10 @@ export class ApiService
     });
   }
 
-  startShopStream()
+  startShopStream() : Observable<OnMessageEvent>
   {
     return new Observable(observer => {
-      const eventSource = new EventSourcePolyfill("http://37.252.191.48:9000/shop?page=2", {headers:
+      const eventSource = new EventSourcePolyfill("http://37.252.191.48:9000/shop?page=0", {headers:
           {Authorization: "Bearer " + sessionStorage.getItem("access_token")}});
       eventSource.onmessage = data => {
         this.zone.run(() => {
