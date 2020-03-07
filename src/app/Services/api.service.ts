@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Shop, User } from './responeTypes';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 import {EventSourcePolyfill, OnMessageEvent} from 'ng-event-source';
 
 
@@ -32,10 +32,18 @@ export class ApiService
     return this.http.post<Shop>("http://37.252.191.48:9000/shop/admin", shop);
   }
 
-  startUserStream()
+  startStream(endpoint: string, pagination: boolean, page: number, size: number): Observable<OnMessageEvent>
   {
+    let url;
+    if (pagination)
+    {
+      url = "http://37.252.191.48:9000/" + endpoint + "?" + "page=" + page + "?" + "size=" + size;
+    }
+    else { url = "http://37.252.191.48:9000/" + endpoint; }
+
+
     return new Observable(observer => {
-      const eventSource = new EventSourcePolyfill("http://37.252.191.48:9000/user", {headers:
+      const eventSource = new EventSourcePolyfill(url, {headers:
           {Authorization: "Bearer " + sessionStorage.getItem("access_token")}});
       eventSource.onmessage = data => {
         this.zone.run(() => {
@@ -51,22 +59,9 @@ export class ApiService
     });
   }
 
-  startShopStream() : Observable<OnMessageEvent>
+  startEasyStream(endpoint: string): Observable<OnMessageEvent>
   {
-    return new Observable(observer => {
-      const eventSource = new EventSourcePolyfill("http://37.252.191.48:9000/shop?page=0", {headers:
-          {Authorization: "Bearer " + sessionStorage.getItem("access_token")}});
-      eventSource.onmessage = data => {
-        this.zone.run(() => {
-          observer.next(data);
-        });
-      };
-
-      eventSource.onerror = error => {
-        this.zone.run(() => {
-          eventSource.close();
-        });
-      };
-    });
+    return this.startStream(endpoint, false, 0, 0);
   }
+
 }

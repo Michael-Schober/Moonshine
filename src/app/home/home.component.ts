@@ -18,16 +18,14 @@ export class HomeComponent
 
   loadShops(): void 
   {
-    if(this.oauth.getAccessToken())
+    if (this.oauth.getAccessToken())
     {
       this.serv.shops = new Array<Shop>();
-      this.serv.startShopStream().subscribe(data => 
+      this.serv.startEasyStream("shop").subscribe(data =>
         {
-          this.serv.shops.push(JSON.parse(data.data))
+          this.serv.shops.push(JSON.parse(data.data));
         });
     }
   }
 
-  
-  
 }
