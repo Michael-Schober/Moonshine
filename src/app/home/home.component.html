@@ -1,10 +1,14 @@
 <app-layout>
+        <button class="btn btn-primary col-12" (click)="loadShops()"> LoadShops </button>
         <div class="jumbotron">
-                <button class="btn btn-primary" (click)="loadShops()"> LoadShops </button>
-                <li *ngFor="let item of serv.shops">
-                        <mat-card>
+                <mat-accordion>
+                        <mat-expansion-panel *ngFor="let item of serv.shops">
+                                <mat-expansion-panel-header>
+                                        <mat-panel-title>{{item.name}}</mat-panel-title>
+                                </mat-expansion-panel-header>
+
                                 {{item.name}}
-                        </mat-card>
-                </li>
+                        </mat-expansion-panel>
+                </mat-accordion>
         </div>
 </app-layout>

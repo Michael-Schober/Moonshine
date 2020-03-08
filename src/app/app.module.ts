@@ -30,7 +30,10 @@ import {
   MatSelectModule,
   MatCardModule,
   MatIconModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatExpansionModule,
+  MatExpansionPanel,
+  MatListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
@@ -57,7 +60,8 @@ import { AdminModule } from './admin/admin.module';
       }
     }),
 
-
+    MatListModule,
+    MatExpansionModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,

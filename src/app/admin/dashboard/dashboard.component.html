@@ -1,45 +1,39 @@
 
 <app-layout>
-    <div class="jumbotron col-md-12">
-        <div class="col-md-12">
+    <div class="jumbotron">
+        <div class="col-12">
             <h3>Create New Shop</h3>
             <form [formGroup]="NewShopForm" (ngSubmit)="createNewShop()">
-                <div class="col">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Name: </mat-label>
-                        <input matInput placeholder="Name" formControlName="name">
-                    </mat-form-field>
-                </div> <div class="col">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Opening Time : </mat-label>
-                            <mat-select formControlName="opening">
-                            <mat-option *ngFor="let a of col.times"  [value]="a">
-                                {{a.hours}}:{{a.minutes}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div> <div class="col">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Closing Time : </mat-label>
-                            <mat-select formControlName="closing">
-                            <mat-option *ngFor="let a of col.times"  [value]="a">
-                                {{a.hours}}:{{a.minutes}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div> <div class="col">
-                    <mat-form-field appearance="fill">
-                        <mat-label>City: </mat-label>
-                        <input matInput placeholder="City" formControlName="city">
-                    </mat-form-field>
-                </div> <div class="col">
-                    <mat-form-field appearance="fill">
-                        <mat-label>District: </mat-label>
-                        <input matInput placeholder="District" formControlName="district">
-                    </mat-form-field>
-                </div>
-                <button class="col" mat-raised-button type="submit">Submit</button>
+                <mat-form-field class="col-12" appearance="fill">
+                    <mat-label>Name: </mat-label>
+                    <input matInput placeholder="Name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="fill">
+                    <mat-label>Opening Time : </mat-label>
+                        <mat-select formControlName="opening">
+                        <mat-option *ngFor="let a of col.times"  [value]="a">
+                            {{a.hours}}:{{a.minutes}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="fill">
+                    <mat-label>Closing Time : </mat-label>
+                        <mat-select formControlName="closing">
+                        <mat-option *ngFor="let a of col.times"  [value]="a">
+                            {{a.hours}}:{{a.minutes}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="fill">
+                    <mat-label>City: </mat-label>
+                    <input matInput placeholder="City" formControlName="city">
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="fill">
+                    <mat-label>District: </mat-label>
+                    <input matInput placeholder="District" formControlName="district">
+                </mat-form-field>
+                <button class="col-12" mat-raised-button type="submit">Submit</button>
             </form>
         </div>
     </div>
-</app-layout>
+</app-layout>   

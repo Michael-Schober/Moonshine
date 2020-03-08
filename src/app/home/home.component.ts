@@ -11,19 +11,19 @@ import { Shop } from '../Services/responeTypes';
 
 export class HomeComponent
 {
-  constructor(private serv: ApiService,private oauth: OAuthService )
+  constructor(private serv: ApiService, private oauth: OAuthService)
   {
 
   }
 
-  loadShops(): void 
+  loadShops(): void
   {
     if (this.oauth.getAccessToken())
     {
       this.serv.shops = new Array<Shop>();
-      this.serv.startEasyStream("shop").subscribe(data =>
+      this.serv.startEasyStream("shop").subscribe(event =>
         {
-          this.serv.shops.push(JSON.parse(data.data));
+          this.serv.shops.push(JSON.parse(event.data));
         });
     }
   }
