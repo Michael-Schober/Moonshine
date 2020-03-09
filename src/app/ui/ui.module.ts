@@ -14,7 +14,7 @@ import { ApiService } from '../Services/api.service';
     CommonModule,
     RouterModule
   ],
-  providers: [ApiService],
+  providers: [ ApiService ],
   exports: [ LayoutComponent ]
 
 })

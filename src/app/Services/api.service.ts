@@ -4,6 +4,8 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Shop, User } from './responeTypes';
 import { Observable } from 'rxjs';
 import {EventSourcePolyfill, OnMessageEvent} from 'ng-event-source';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 
 
 @Injectable({
@@ -11,11 +13,39 @@ import {EventSourcePolyfill, OnMessageEvent} from 'ng-event-source';
 })
 export class ApiService
 {
-
+  
   public shops: Array<Shop> = new Array<Shop>();
+  public admin: boolean = false;
 
 
-  constructor(private oauthService: OAuthService, private http: HttpClient, private zone: NgZone) { }
+  constructor(private oauthService: OAuthService, private http: HttpClient, private zone: NgZone) 
+  {
+    this.adminPanelActivation();  
+  }
+
+  private adminPanelActivation(): void
+  {
+    this.oauthService.events.subscribe(data => {
+      if(data.type.includes("token_received"))
+      {
+        let jwtHelper = new JwtHelperService();
+        if(jwtHelper.decodeToken(this.oauthService.getAccessToken()).realm_access.roles.includes("ADMIN"))
+        {
+          this.admin = true;
+          console.log("event");
+        }
+      }
+    });
+    if(!this.admin && this.oauthService.getAccessToken())
+    {
+      let jwtHelper = new JwtHelperService();
+        if(jwtHelper.decodeToken(this.oauthService.getAccessToken()).realm_access.roles.includes("ADMIN"))
+        {
+          this.admin = true;
+          console.log("non event");
+        }
+    }
+  }
 
   test(): Observable<any>
   {
@@ -63,5 +93,4 @@ export class ApiService
   {
     return this.startStream(endpoint, false, 0, 0);
   }
-
 }
