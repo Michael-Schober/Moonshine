@@ -9,10 +9,18 @@ import { OAuthService } from 'angular-oauth2-oidc';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent
+export class HeaderComponent implements OnInit
 {
+  private admin: boolean;
+
   constructor(private serv: ApiService) 
   { 
 
+  }
+
+  ngOnInit()
+  {
+    if(sessionStorage.getItem("admin")=="true") { this.admin = true; }
+    else {this.admin = false}
   }
 }

@@ -15,8 +15,6 @@ export class ApiService
 {
   
   public shops: Array<Shop> = new Array<Shop>();
-  public admin: boolean = false;
-
 
   constructor(private oauthService: OAuthService, private http: HttpClient, private zone: NgZone) 
   {
@@ -31,20 +29,11 @@ export class ApiService
         let jwtHelper = new JwtHelperService();
         if(jwtHelper.decodeToken(this.oauthService.getAccessToken()).realm_access.roles.includes("ADMIN"))
         {
-          this.admin = true;
-          console.log("event");
+          sessionStorage.setItem("admin", "true")
+          window.location.reload();
         }
-      }
+      } else if(data.type.includes("logout")) { sessionStorage.setItem("admin", "false"); }
     });
-    if(!this.admin && this.oauthService.getAccessToken())
-    {
-      let jwtHelper = new JwtHelperService();
-        if(jwtHelper.decodeToken(this.oauthService.getAccessToken()).realm_access.roles.includes("ADMIN"))
-        {
-          this.admin = true;
-          console.log("non event");
-        }
-    }
   }
 
   test(): Observable<any>
