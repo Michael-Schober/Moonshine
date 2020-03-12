@@ -37,6 +37,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
+import { ShopsModule } from './shops/shops.module';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ShopsModule,
 
     OAuthModule.forRoot({
       resourceServer: {
@@ -60,6 +62,8 @@ import { AdminModule } from './admin/admin.module';
       }
     }),
 
+
+    MatButtonModule,
     MatListModule,
     MatExpansionModule,
     BrowserAnimationsModule,
